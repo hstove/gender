@@ -1,0 +1,13 @@
+body {
+  font-family: Helvetica, arial, sans-serif;
+  text-align: center;
+}
+
+#gender {
+  font-size: 32px;
+  text-align: center;
+}
+
+#result p {
+  font-size: 72px;
+}

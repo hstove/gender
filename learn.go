@@ -5,26 +5,17 @@ import (
   "io"
   "os"
   "fmt"
-  "log"
-  "github.com/eaigner/shield"
   "strconv"
   "strings"
   "runtime"
+  c "github.com/hstove/gender/classifier"
+  b "github.com/jbrukh/bayesian"
 )
 
-var logger *log.Logger
-var start = 1960
-var end = 2004
+var start = 1950
+var end = 2012
 
-func newClassifier () shield.Shield {
-  return shield.New(
-    shield.NewEnglishTokenizer(),
-    shield.NewRedisStore("127.0.0.1:6379", "", logger, ""),
-  )
-}
-
-func worker(year int, done chan bool) {
-  classifier := newClassifier()
+func worker(classifier *b.Classifier, year int, done chan bool) {
   filename := fmt.Sprintf("names/yob%d.txt", year)
   file, _ := os.Open(filename)
   defer file.Close()
@@ -38,13 +29,9 @@ func worker(year int, done chan bool) {
 
     count, _ := strconv.ParseInt(record[2], 10, 8)
     name := strings.ToLower(record[0])
-    count = count / 10 + 1
     idx := 0
     for idx <= int(count) {
-      err := classifier.Learn(record[1], name)
-      if err != nil {
-        fmt.Println("Error: ", err)
-      }
+      c.Learn(classifier, name, record[1])
       idx++
     }
   }
@@ -53,18 +40,16 @@ func worker(year int, done chan bool) {
 }
 
 func main() {
-  nCPU := runtime.NumCPU()
-  runtime.GOMAXPROCS(nCPU)
-  fmt.Println("Number of CPUs: ", nCPU)
+  runtime.GOMAXPROCS(1)
 
-  classifier := newClassifier()
-  classifier.Reset()
+  classifier := c.NewClassifier()
 
   done := make(chan bool, end - start)
   for i := start; i <= end; i++ {
-    go worker(i, done)
+    go worker(classifier, i, done)
   }
   for j := start; j <= end; j++ {
     <-done
   }
+  classifier.WriteToFile("./classifier.serialized")
 }

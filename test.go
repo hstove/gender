@@ -3,16 +3,13 @@ package main
 import (
   "fmt"
   "log"
-  "github.com/eaigner/shield"
+  c "github.com/hstove/gender/classifier"
 )
 
 var logger *log.Logger
 
 func main() {
-  classifier := shield.New(
-    shield.NewEnglishTokenizer(),
-    shield.NewRedisStore("127.0.0.1:6379", "", logger, ""),
-  )
+  classifier := c.Classifier()
 
   names := []string {
     "hank",
@@ -32,7 +29,7 @@ func main() {
 
   for i, _ := range names {
     name := names[i]
-    result, _ := classifier.Classify(name)
-    fmt.Println(name, result)
+    gender, probability := c.Classify(classifier, name)
+    fmt.Println(name, gender, probability)
   }
 }
