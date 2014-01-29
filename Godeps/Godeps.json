@@ -1,5 +1,5 @@
 {
-	"ImportPath": "github.com/hstove/gender/web",
+	"ImportPath": "github.com/hstove/gender",
 	"GoVersion": "go1.1.2",
 	"Deps": [
 		{
