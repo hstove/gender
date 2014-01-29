@@ -1,0 +1,11 @@
+{
+	"ImportPath": "github.com/hstove/gender/web",
+	"GoVersion": "go1.1.2",
+	"Deps": [
+		{
+			"ImportPath": "github.com/jbrukh/bayesian",
+			"Comment": "1.0-8-gf13a90b",
+			"Rev": "f13a90b89eba20e016b790e7e1aa63c7db24fa36"
+		}
+	]
+}
