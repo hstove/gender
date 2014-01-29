@@ -7,6 +7,7 @@ import (
   c "github.com/hstove/gender/classifier"
   "log"
   "strconv"
+  "os"
 )
 
 var classifier = c.Classifier()
@@ -33,8 +34,13 @@ func classify(res http.ResponseWriter, req *http.Request) {
 
 func main() {
   http.HandleFunc("/classify/", classify)
+  port := "5000"
+  envPort := os.Getenv("PORT")
+  if envPort != "" {
+    port = envPort
+  }
   http.Handle("/", http.FileServer(http.Dir("./public")))
-  err := http.ListenAndServe(":5000", nil)
+  err := http.ListenAndServe(":" + port, nil)
   if err != nil {
       log.Fatal("Error: %v", err)
   }
