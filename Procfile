@@ -1,1 +1,1 @@
-web: go run web.go
+web: web
