@@ -4,8 +4,14 @@ body {
 }
 
 #gender {
-  font-size: 32px;
+  font-size: 100px;
   text-align: center;
+  border: none;
+  border-bottom: 4px dashed #ccc;
+}
+
+#gender:focus {
+  outline: none;
 }
 
 #result p {
