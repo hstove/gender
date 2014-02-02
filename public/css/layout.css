@@ -8,6 +8,7 @@ body {
   text-align: center;
   border: none;
   border-bottom: 4px dashed #ccc;
+  max-width: 100%;
 }
 
 #gender:focus {

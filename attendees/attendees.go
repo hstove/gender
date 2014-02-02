@@ -6,19 +6,31 @@ import (
   "os"
   "fmt"
   c "github.com/hstove/gender/classifier"
+  "strings"
 )
 
 func main() {
-  file, _ := os.Open("attendees.csv")
+  file, _ := os.Open("attendees/attendees.csv")
   defer file.Close()
   classifier := c.Classifier()
 
   reader := csv.NewReader(file)
   reader.TrailingComma = true
   i := 0
-  genders := map[string]int {
-    "F": 0,
-    "M": 0,
+  genders := map[string]map[string]int {}
+  years := []string{
+    "2009",
+    "2010",
+    "2011",
+    "2012",
+    "2013",
+    "2014",
+  }
+  for _, year := range years {
+    genders[year] = map[string]int {
+      "Female": 0,
+      "Male": 0,
+    }
   }
 
   for {
@@ -27,19 +39,24 @@ func main() {
     if err == io.EOF {
       break
     } else if err != nil {
-      fmt.Println(err)
+      fmt.Println("ERROR: ", err)
     }
-    name := record[0]
+    if len(record) == 0 {
+      continue
+    }
+    name := strings.Split(record[0], " ")[0]
+    year := strings.Split(record[1], "-")[0]
     gender, _ := c.Classify(classifier, name)
-    // fmt.Println("\t\t", name, gender)
-    genders[gender]++
+    genders[year][gender]++
   }
-
-  total := float64(genders["M"] + genders["F"])
-  fmt.Println("Total:", total)
-  females := float64(genders["F"])
-  diff := females / total
-  percentage := fmt.Sprintf(" (%f%)", diff)
-  fmt.Println("Female:", females, percentage)
-  fmt.Println("Male:", genders["M"])
+  for year, genderCounts := range genders {
+    fmt.Println(year)
+    total := float64(genderCounts["Male"] + genderCounts["Female"])
+    fmt.Println("Total:", total)
+    females := float64(genderCounts["Female"])
+    diff := females / total
+    fmt.Println("Female:", females, "(", diff * 100, "%)")
+    fmt.Println("Male:", genderCounts["Male"])
+    fmt.Println()
+  }
 }
