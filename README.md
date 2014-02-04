@@ -41,7 +41,7 @@ marsha Female 0.9678191887441999
 You can also check against Census data from 2000:
 
 ~~~bash
-go run names/check.go
+go run accuracy/accuracy.go
 ~~~
 
 Output:
