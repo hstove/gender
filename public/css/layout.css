@@ -1,6 +1,10 @@
 body {
   font-family: Helvetica, arial, sans-serif;
   text-align: center;
+  background: #E8F2F1;
+  color: #656A6D;
+  text-transform: lowercase;
+  font-weight: 200;
 }
 
 #gender {
@@ -9,6 +13,7 @@ body {
   border: none;
   border-bottom: 4px dashed #ccc;
   max-width: 100%;
+  background-color: #E8F2F1;
 }
 
 #gender:focus {
@@ -17,4 +22,9 @@ body {
 
 #result p {
   font-size: 72px;
+}
+
+#link a {
+  font-size: 18px;
+  color: #656A6D;
 }

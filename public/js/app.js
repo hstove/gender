@@ -8,6 +8,8 @@ $(function(){
         success: function(data) {
           $('#gender-result').html(data.gender)
           $('#probability').html(data.probability + "%")
+          link = "http://gender.hankstoever.com/classify/"+val
+          $('#link a').attr('href',link).text(link)
         }
       })
     }
