@@ -69,13 +69,6 @@ func main() {
     fmt.Println()
     fmt.Println(role)
     for year, genderCounts := range years {
-      // these years don't have enough data
-      if year == "2010" {
-        continue
-      }
-      if year == "2014" {
-        continue
-      }
       fmt.Println(year)
       total := float64(genderCounts["Male"] + genderCounts["Female"])
       fmt.Println("Total:", total)

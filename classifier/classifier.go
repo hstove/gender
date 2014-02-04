@@ -27,6 +27,7 @@ func Gender(gender string) bayesian.Class {
 }
 
 func Learn(classifier *bayesian.Classifier, name string, gender string) {
+  strings.ToLower(name)
   classifier.Learn([]string{name}, Gender(gender))
 }
 

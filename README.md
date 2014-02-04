@@ -6,11 +6,15 @@ Data from [US Social Security](http://www.ssa.gov/oact/babynames/limits.html)
 
 ## Usage
 
+### Classify
+
 ~~~bash
 go run learn.go
 ~~~
 
 Come back and test your results.
+
+### Check
 
 ~~~bash
 go run names/test.go
@@ -34,6 +38,20 @@ lauren Female 0.709172456248351
 marsha Female 0.9678191887441999
 ~~~
 
+You can also check against Census data from 2000:
+
+~~~bash
+go run names/check.go
+~~~
+
+Output:
+
+~~~
+Rows: 29763
+Wrong: 2434
+Accuracy: 0.918220609481571
+~~~
+
 You can also test out your classifier with a web interface:
 
 ~~~bash
@@ -52,7 +70,7 @@ The purpose of this project was to get a better understanding of female particip
 
 Every event has attendees, organizers, speakers, coaches, and judges. We have historical data for this, but `gender` was never something we stored. This is why we'll be classifying based on first name.
 
-#### Volunteers
+### Volunteers
 
 `go run startup_weekend/startup_weekend.go`
 
@@ -116,7 +134,7 @@ Female: 685 ( 34.77157360406091 %)
 Male: 1285
 ~~~
 
-#### Attendees
+### Attendees
 
 `go run attendees/attendees.go`
 
