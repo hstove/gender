@@ -8,10 +8,11 @@ import (
 const (
   Boy bayesian.Class = "Male"
   Girl bayesian.Class = "Female"
+  None bayesian.Class = "N/A"
 )
 
 func NewClassifier() *bayesian.Classifier {
-  return bayesian.NewClassifier(Boy, Girl)
+  return bayesian.NewClassifier(Boy, Girl, None)
 }
 
 func Classifier() *bayesian.Classifier {
@@ -35,7 +36,12 @@ func Classify (classifier *bayesian.Classifier, name string) (string, float64) {
   name = strings.ToLower(name)
   scores, likely, _ := classifier.ProbScores([]string{name})
   gender := GenderFromInt(likely)
-  return string(gender), scores[likely]
+  probability := scores[likely]
+  if probability == 0.5936993620304059 {
+    gender = None
+    probability = 0
+  }
+  return string(gender), probability
 }
 
 func GenderFromInt(gender int) bayesian.Class {

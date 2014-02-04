@@ -17,10 +17,6 @@ func classify(res http.ResponseWriter, req *http.Request) {
   gender, prob := c.Classify(classifier, name)
   prob = prob * 100
   probability := strconv.FormatFloat(prob, 'f', 6, 64)
-  if probability == "59.369936" {
-    probability = "?"
-    gender = "unknown"
-  }
   jsonMap := map[string]string {
     "name": name,
     "gender": gender,

@@ -30,6 +30,7 @@ func main() {
     genders[year] = map[string]int {
       "Female": 0,
       "Male": 0,
+      "N/A": 0,
     }
   }
 
@@ -53,6 +54,7 @@ func main() {
     fmt.Println(year)
     total := float64(genderCounts["Male"] + genderCounts["Female"])
     fmt.Println("Total:", total)
+    fmt.Println("N/A:", genderCounts["N/A"])
     females := float64(genderCounts["Female"])
     diff := females / total
     fmt.Println("Female:", females, "(", diff * 100, "%)")

@@ -22,6 +22,7 @@ func genderMap () map[string]map[string]int {
     result[year] = map[string]int {
       "Female": 0,
       "Male": 0,
+      "N/A": 0,
     }
   }
   return result
@@ -56,6 +57,7 @@ func main() {
       continue
     }
     name := strings.Split(record[1], " ")[0]
+    name = strings.Split(record[1], "-")[0]
     gender, _ := c.Classify(classifier, name)
     // fmt.Println(name, gender)
     if genders[role] == nil {
@@ -70,8 +72,9 @@ func main() {
     fmt.Println(role)
     for year, genderCounts := range years {
       fmt.Println(year)
-      total := float64(genderCounts["Male"] + genderCounts["Female"])
+      total := float64(genderCounts["Male"] + genderCounts["Female"] + genderCounts["N/A"])
       fmt.Println("Total:", total)
+      fmt.Println("N/A:", genderCounts["N/A"])
       females := float64(genderCounts["Female"])
       diff := females / total
       fmt.Println("Female:", females, "(", diff * 100, "%)")
