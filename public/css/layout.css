@@ -3,7 +3,6 @@ body {
   text-align: center;
   background: #E8F2F1;
   color: #656A6D;
-  text-transform: lowercase;
   font-weight: 200;
 }
 
@@ -27,4 +26,12 @@ body {
 #link a {
   font-size: 18px;
   color: #656A6D;
+}
+
+p#literate {
+  font-size: 48px;
+}
+
+.hidden {
+  display: none;
 }
