@@ -1,4 +1,6 @@
-# Gender Classification
+# gender
+
+A Go package for identifying gender.
 
 Test it out at [gender.hankstoever.com](http://gender.hankstoever.com)
 
