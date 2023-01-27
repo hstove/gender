@@ -1,0 +1,4 @@
+github.com/hstove/gender v0.0.0-20150403222607-9ad7546b80e8 h1:ZAQWLlOqbv9YlKkg2mKwh294Qwz5/05M4jBMDgnwnRo=
+github.com/hstove/gender v0.0.0-20150403222607-9ad7546b80e8/go.mod h1:7YbNXKWhsTJUANaqsmWajx+bBLHZEDUHT0MZmTjLJbU=
+github.com/jbrukh/bayesian v0.0.0-20130312140320-f13a90b89eba h1:mrcCTL1p2j01t3SeJEzdPYCOluXNk1VNz8B2lvsKgec=
+github.com/jbrukh/bayesian v0.0.0-20130312140320-f13a90b89eba/go.mod h1:SELxwZQq/mPnfPCR2mchLmT4TQaPJvYtLcCtDWSM7vM=
